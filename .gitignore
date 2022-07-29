@@ -10,3 +10,5 @@ minikube-*
 
 .demo-last-step
 *.pb.gz
+
+demo/pprof-example-app-go

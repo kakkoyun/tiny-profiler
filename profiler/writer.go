@@ -30,10 +30,10 @@ func NewFileWriter(dirPath string) *FileProfileWriter {
 }
 
 func (fw *FileProfileWriter) Write(ctx context.Context, labels map[string]string, prof *profile.Profile) error {
-	path := "profile"
-	for _, v := range labels {
-		path += fmt.Sprintf("_%s", v)
-	}
+	var path string
+	path += labels["__name__"]
+	path += fmt.Sprintf("_%s", labels["node"])
+	path += fmt.Sprintf("_%s", labels["pid"])
 	path += fmt.Sprintf("_%03d.pb.gz", time.Now().UnixNano())
 
 	if err := os.MkdirAll(fw.dir, 0755); err != nil {
