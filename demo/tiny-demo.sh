@@ -18,21 +18,9 @@ r "Are there any captured profiles already?" "ls -alh ./tmp/profiles"
 PROFILE_FILE="$(ls ./tmp/profiles | shuf -n 1)"
 r "Let's grab one and check" "echo $PROFILE_FILE"
 
-r "pprof" "pprof -symbolize=none -http=:4040 $PROFILE_FILE"
-r "Let's go to pprof UI" "http://localhost:4040"
+r "pprof -symbolize=none -http=:4040 ./tmp/profiles/$PROFILE_FILE" "pprof -symbolize=none -http=:4040 ./tmp/profiles/$PROFILE_FILE"
 
-r "pprof with symbols" "pprof -http=:4040 $PROFILE_FILE"
-r "Let's go to pprof UI again" "http://localhost:4040"
-
-rc "killall tiny-profiler" # "kill $(jobs -p)"
-
-PARCA_ROOT=${PARCA_ROOT:-../../Projects/parca}
-PARCA=${PARCA:-../../Projects/parca/bin/parca}
-
-r "We need to do this for each process. Is there a better way?" "$PARCA --config-path="$PARCA_ROOT/parca.yaml""
-
-r "Start the profiler to send profile to Parca" "./dist/tiny-profiler --node=local-test --remote-store-address=localhost:7070 --remote-store-insecure"
-r "Let's see what it's look like" "https://localhost:7070"
+r "Let's go to pprof UI" "echo http://localhost:4040"
 
 # Last entry to run navigation mode.
 navigate
