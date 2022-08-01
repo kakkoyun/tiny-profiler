@@ -2,36 +2,11 @@
 // ^^ this is a golang build tag meant to exclude this C file from compilation
 // by the CGO compiler
 
-/*
-In Linux 5.4 asm_inline was introduced, but it's not supported by clang.
-* Redefine it to just asm to enable successful compilation.
-* see
-* https://github.com/iovisor/bcc/commit/2d1497cde1cc9835f759a707b42dea83bee378b8
-* for more details
-*/
-
 #include "vmlinux.h"
-
-#ifdef asm_inline
-#undef asm_inline
-#define asm_inline asm
-#endif
+#include <bpf_helpers.h>
 
 #define KBUILD_MODNAME "tiny-profiler"
-
-#undef container_of
-#include <bpf_core_read.h>
-#include <bpf_endian.h>
-#include <bpf_helpers.h>
-#include <bpf_tracing.h>
-
 volatile const char bpf_metadata_name[] SEC(".rodata") = "tiny-profiler";
-
-#if defined(bpf_target_x86)
-#define PT_REGS_PARM6(ctx) ((ctx)->r9)
-#elif defined(bpf_target_arm64)
-#define PT_REGS_PARM6(x) (((PT_REGS_ARM64 *)(x))->regs[5])
-#endif
 
 // Max amount of different stack trace addresses to buffer in the Map
 #define MAX_STACK_ADDRESSES 1024
