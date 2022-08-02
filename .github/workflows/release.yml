@@ -104,22 +104,6 @@ jobs:
             goreleaser/dist
             !goreleaser/dist/*.txt
 
-  docs:
-    name: Publish Docs
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
-
-      - name: Publish Netlify
-        uses: netlify/actions/build@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
-      - name: Publish Vercel
-        run: |
-          curl -X POST "https://api.vercel.com/v1/integrations/deploy/${{ secrets.VERCEL_WEBHOOK }}"
-
   container:
     name: Build and release container images
     runs-on: ubuntu-latest
