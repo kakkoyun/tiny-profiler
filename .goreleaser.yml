@@ -92,13 +92,11 @@ release:
   footer: |
     ## Docker images
 
-    `docker pull ghcr.io/parca-dev/tiny-profiler:{{ .Tag }}`
+    `docker pull ghcr.io/kakkoyun/tiny-profiler:{{ .Tag }}`
 
     ## Thanks!
 
-    Join our [Discord server](https://discord.com/invite/ZgUpYgpzXy);
-    Follow us on [Twitter](https://twitter.com/ParcaDev);
-    Read the [documentation](https://www.parca.dev/docs/overview).
+    Follow me on [Twitter](https://twitter.com/kakkoyun).
 changelog:
   sort: asc
   use: github

@@ -17,7 +17,7 @@ Usage: tiny-profiler
 Flags:
   -h, --help                      Show context-sensitive help.
       --log-level="info"          Log level.
-      --http-address=":8080"      Address to bind HTTP server to.
+      --http-address=":6060"      Address to bind HTTP server to.
       --node="localhost"          Name node the process is running on. Used to
                                   identify the process.
       --profiling-duration=10s    The agent profiling duration to use. Leave

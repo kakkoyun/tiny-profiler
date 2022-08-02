@@ -11,10 +11,8 @@ on:
     - release-*
 
 env:
-  # renovate: datasource=go depName=mvdan.cc/gofumpt
   GOFUMPT_VERSION: v0.3.1
-  # renovate: datasource=go depName=github.com/golangci/golangci-lint
-  GOLANGCI_LINT_VERSION: v1.46.2
+  GOLANGCI_LINT_VERSION: v1.47.2
 
 jobs:
   skip-check:
@@ -70,14 +68,14 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -yq libelf-dev zlib1g-dev
 
-      - name: Build BPF
-        run: make bpf
-
       - name: Initialize and update libbpf submodule
         run: git submodule init && git submodule update
 
       - name: Build libbpf
         run: make libbpf
+
+      - name: Build BPF
+        run: make bpf
 
       - name: Build
         run: make build
@@ -85,7 +83,6 @@ jobs:
       - name: Test
         run: |
           make test ENABLE_RACE=yes
-          # make test/profiler (Needs to be fixed, somehow fails because of generics)
 
       - name: Format
         run: |

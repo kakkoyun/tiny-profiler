@@ -11,7 +11,6 @@ on:
     - release-*
 
 env:
-  # renovate: datasource=go depName=github.com/goreleaser/goreleaser
   GORELEASER_VERSION: v1.10.2
 
 jobs:
@@ -67,6 +66,17 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -yq llvm-dev libclang-dev
 
+      - name: Install libbpf dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -yq libelf-dev zlib1g-dev
+
+      - name: Initialize and update libbpf submodule
+        run: git submodule init && git submodule update
+
+      - name: Build libbpf
+        run: make libbpf
+
       - name: Build BPF
         run: make bpf
 
@@ -103,16 +113,13 @@ jobs:
           go-version-file: .go-version
           cache: true
 
-      - name: Initialize and update libbpf submodule
-        run: git submodule init && git submodule update
-
       - name: Install libbpf dependencies
         run: |
           apt-get update -y
-          apt-get install -yq lld libelf-dev zlib1g-dev libelf-dev:arm64 zlib1g-dev:arm64 llc
+          apt-get install -yq lld libelf-dev zlib1g-dev libelf-dev:arm64 zlib1g-dev:arm64
 
-      - name: Build BPF
-        run: make bpf
+      - name: Initialize and update libbpf submodule
+        run: git submodule init && git submodule update
 
       - name: Get branch name
         shell: bash
@@ -121,7 +128,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: ebpf-object-file-container
-          path: profiler/cpur.bpf.o
+          path: profiler/cpu.bpf.o
 
       - name: Run Goreleaser
         run: goreleaser release --rm-dist --skip-validate --skip-publish --snapshot --debug
@@ -184,7 +191,7 @@ jobs:
       - name: Login to registry
         if: ${{ github.event_name != 'pull_request' }}
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | podman login -u parca-dev --password-stdin ghcr.io
+          echo "${{ secrets.GITHUB_TOKEN }}" | podman login -u kakkoyun --password-stdin ghcr.io
 
       - name: Install crane
         if: ${{ github.event_name != 'pull_request' }}

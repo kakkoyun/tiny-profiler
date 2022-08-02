@@ -49,7 +49,6 @@ jobs:
         with:
           go-version-file: .go-version
           cache: true
-
       - name: Install LLVM (BPF dependency)
         run: |
           sudo apt-get update -y
@@ -60,11 +59,14 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -yq libelf-dev zlib1g-dev
 
-      - name: Build BPF
-        run: make bpf
-
       - name: Initialize and update libbpf submodule
         run: git submodule init && git submodule update
+
+      - name: Build libbpf
+        run: make libbpf
+
+      - name: Build BPF
+        run: make bpf
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL

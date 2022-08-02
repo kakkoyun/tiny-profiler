@@ -37,7 +37,7 @@ func (fw *FileProfileWriter) Write(ctx context.Context, labels map[string]string
 	path += fmt.Sprintf("_%03d.pb.gz", time.Now().UnixNano())
 
 	if err := os.MkdirAll(fw.dir, 0755); err != nil {
-		return fmt.Errorf("could not use temp dir ", fw.dir, ": ", err.Error())
+		return fmt.Errorf("could not use temp dir, %s: %w", fw.dir, err)
 	}
 
 	f, err := os.OpenFile(filepath.Join(fw.dir, path), os.O_RDWR|os.O_CREATE|os.O_EXCL, 0666)
