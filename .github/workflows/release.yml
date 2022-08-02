@@ -76,8 +76,8 @@ jobs:
 
       - name: Install LLVM (BPF dependency)
         run: |
-          sudo apt-get update -y
-          sudo apt-get install -yq llvm-dev libclang-dev
+          apt-get update -y
+          apt-get install -yq llvm-dev libclang-dev
 
       - name: Install libbpf dependencies
         run: |
