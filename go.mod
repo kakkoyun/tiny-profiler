@@ -13,7 +13,7 @@ require (
 	github.com/oklog/run v1.1.0
 	github.com/parca-dev/parca v0.12.1-0.20220729202354-ab468336f8c5
 	github.com/parca-dev/parca-agent v0.9.1
-	github.com/prometheus/client_golang v1.12.2
+	github.com/prometheus/client_golang v1.13.0
 	golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f
 	google.golang.org/grpc v1.48.0
 )
@@ -94,7 +94,7 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.37.0 // indirect
-	github.com/prometheus/procfs v0.7.3 // indirect
+	github.com/prometheus/procfs v0.8.0 // indirect
 	github.com/prometheus/prometheus v1.8.2-0.20220315145411-881111fec433 // indirect
 	github.com/rs/xid v1.2.1 // indirect
 	github.com/rzajac/flexbuf v0.14.0 // indirect
@@ -114,7 +114,7 @@ require (
 	google.golang.org/api v0.86.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20220722212130-b98a9ff5e252 // indirect
-	google.golang.org/protobuf v1.28.0 // indirect
+	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/ini.v1 v1.66.4 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	rsc.io/goversion v1.2.0 // indirect
