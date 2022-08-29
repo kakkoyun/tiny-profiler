@@ -15,7 +15,7 @@ require (
 	github.com/parca-dev/parca-agent v0.9.1
 	github.com/prometheus/client_golang v1.12.2
 	golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f
-	google.golang.org/grpc v1.48.0
+	google.golang.org/grpc v1.49.0
 )
 
 require (
