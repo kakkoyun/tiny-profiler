@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/alecthomas/kong v0.6.1
-	github.com/aquasecurity/libbpfgo v0.3.0-libbpf-0.8.0
+	github.com/aquasecurity/libbpfgo v0.4.4-libbpf-1.0.1
 	github.com/dustin/go-humanize v1.0.0
 	github.com/go-kit/log v0.2.1
 	github.com/google/gops v0.3.25
