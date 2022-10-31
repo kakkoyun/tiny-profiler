@@ -3,7 +3,7 @@ module github.com/kakkoyun/tiny-profiler
 go 1.18
 
 require (
-	github.com/alecthomas/kong v0.6.1
+	github.com/alecthomas/kong v0.7.0
 	github.com/aquasecurity/libbpfgo v0.3.0-libbpf-0.8.0
 	github.com/dustin/go-humanize v1.0.0
 	github.com/go-kit/log v0.2.1
